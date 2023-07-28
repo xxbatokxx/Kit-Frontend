@@ -14,7 +14,8 @@ defineProps({
         <div class="overflow-hidden border border-gray-200 rounded-xl">
             <RouterLink :to="'/product/' + id">
                 <div class="m-4 overflow-hidden rounded-xl">
-                    <img :alt="image" class="block w-full h-auto" :src="'/src/assets/img/' + image" />
+                    <img :alt="title" class="block w-full h-auto" 
+                    :src="image" />
                 </div>
             </RouterLink>
             <header class="px-4 mb-4 leading-tight">
