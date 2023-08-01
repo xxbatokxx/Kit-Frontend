@@ -11,7 +11,7 @@ async function getCategories() {
   try {
     // get data
     const response = await axios.get(
-      "https://zullkit-backend.belajarkoding.com/api/categories"
+      "https://zullkit-backend.belajarkoding.com/api/categories?limit=1000"
     );
     // handle data success
     console.log(response.data);

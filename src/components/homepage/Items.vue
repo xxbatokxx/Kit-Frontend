@@ -10,7 +10,7 @@ async function getItems() {
   try {
     // get data
     const response = await axios.get(
-      "https://zullkit-backend.belajarkoding.com/api/products"
+      "https://zullkit-backend.belajarkoding.com/api/products?id="
     );
     // handle data success
     console.log(response.data);
@@ -29,16 +29,16 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="container px-4 mx-auto my-16 md:px-12">
+    <div class="container px-4 mx-auto my-16 md:px-12" id="products">
         <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">New Items</h2>
         <div class="flex flex-wrap -mx-1 lg:-mx-4">
             <ItemsCard
-            v-for="Itemscard in items"
-            :key="Itemscard.id"
-            :id="ItemsCard.id"
-            :title="Itemscard.name"
-            :desc="Itemscard.subtitle"
-            :image="Itemscard.thumbnails"
+            v-for="item in items"
+            :id="item.id"
+            :key="item.id"
+            :title="item.name"
+            :desc="item.subtitle"
+            :image="item.thumbnails"
             />
         </div>
     </div>

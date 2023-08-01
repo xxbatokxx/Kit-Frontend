@@ -1,11 +1,29 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
+import axios from "axios";
 
 const form = ref({
     email: "",
     password: "",
-});
+})
+
+async function login() {
+    try {
+        // get data
+        const response = await axios.post(
+            "https://zullkit-backend.belajarkoding.com/api/login", {
+            email: form.value.email,
+            password: form.value.password
+        })
+        // handle data success
+        console.log(response.data);
+    } catch (err) {
+        // handle data errorr
+        console.error(err);
+    }
+}
+
 </script>
 
 <template>
@@ -17,14 +35,15 @@ const form = ref({
         </div>
         <div class="mb-4">
             <label class="block mb-1" for="password">Password</label>
-            <input v-model="form.password" placeholder="Type your password" id="password" type="password" name="password"
+            <input @keyup.enter="login" v-model="form.password" placeholder="Type your password" id="password"
+                type="password" name="password"
                 class="block w-full py-3 mt-2 border border-gray-300 rounded-full shadow-sm px-7 focus:border-indigo-300 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50 disabled:bg-gray-100" />
         </div>
         <div class="mt-6">
-           <RouterLink to="/"
+            <button @click="login"
                 class="inline-flex items-center justify-center w-full px-8 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-full hover:bg-indigo-700 md:py-2 md:text-lg md:px-10 hover:shadow">
                 Sign In
-            </RouterLink>
+            </button>
             <RouterLink to="/register"
                 class="inline-flex items-center justify-center w-full px-8 py-3 mt-2 text-base font-medium text-black bg-gray-200 border border-transparent rounded-full hover:bg-gray-300 md:py-2 md:text-lg md:px-10 hover:shadow">
                 Create New Account
